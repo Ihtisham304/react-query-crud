@@ -17,6 +17,8 @@ const AllPosts = () => {
         setTimeout(() => resolve(posts), 500);
       });
     },
+    // gcTime: 1000,
+    // staleTime: 1000
     initialData: posts,
   });
 
@@ -26,7 +28,7 @@ const AllPosts = () => {
         setTimeout(() => {
           deletePost(id);
           resolve();
-        }, 500); // Simulate an API call delay
+        }, 500); 
       });
     },
     onSuccess: () => {

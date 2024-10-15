@@ -6,16 +6,16 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useMutation } from "@tanstack/react-query";
 
 const EditPosts = () => {
-  const { id } = useParams(); // Get the post ID from URL
+  const { id } = useParams(); 
   const { posts, updatePost } = useContext(PostsContext);
   const navigate = useNavigate();
 
-  // Find the post to edit
+
   const postToEdit = posts.find((post) => post.id === parseInt(id));
 
   const formik = useFormik({
     initialValues: {
-      title: postToEdit ? postToEdit.title : "", // Set initial value for the title
+      title: postToEdit ? postToEdit.title : "", 
     },
     validationSchema: postValidation,
     onSubmit: (values) => {
@@ -26,13 +26,13 @@ const EditPosts = () => {
   const mutation = useMutation({
     mutationFn: ({ id, updatedPost }) => {
       return new Promise((resolve) => {
-        // Simulating a successful update
+       
         updatePost(id, updatedPost);
         resolve();
       });
     },
     onSuccess: () => {
-      navigate("/"); // Navigate to home page after successful update
+      navigate("/"); 
     },
     onError: (error) => {
       console.error("Error updating post:", error);
@@ -41,7 +41,7 @@ const EditPosts = () => {
 
   useEffect(() => {
     if (postToEdit) {
-      formik.setValues({ title: postToEdit.title }); // Set form values if post exists
+      formik.setValues({ title: postToEdit.title }); 
     }
   }, [postToEdit]);
 
